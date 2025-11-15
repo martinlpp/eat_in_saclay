@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import moreSugar from "../fonts/more_sugar/moresugar";
 
 const members = [
   {
@@ -41,20 +42,26 @@ const members = [
 
 export default function Bureau() {
   return (
-    <main className="min-h-screen bg-white text-violet-950 px-4 py-12">
+    <main className="min-h-screen bg-white text-gray-800 px-4 py-12">
       <div className="max-w-5xl mx-auto flex flex-col gap-10">
         <header className="text-center space-y-4">
-          <h1 className="text-4xl font-extrabold tracking-tight">
+          <h1
+            className={`${moreSugar.className} text-4xl sm:text-5xl text-red-700`}
+          >
             Le Bureau EatinSaclay
           </h1>
-          <p className="text-lg max-w-2xl mx-auto">
+
+          <p
+            className=' text-lg font-semibold text-yellow-600 max-w-2xl mx-auto'
+          >
             Découvrez l’équipe qui fait vivre l’association{" "}
-            <span className="font-semibold">EatinSaclay</span> 🍽️ sur le plateau.
+            <span className="font-semibold text-red-700">EatinSaclay</span> 🍽️
+            sur le Plateau !
           </p>
 
           <Link
             href="/"
-            className="inline-flex items-center justify-center px-4 py-2 mt-2 text-sm font-medium text-violet-950 border border-violet-200 rounded-full hover:bg-violet-50 transition"
+            className="inline-flex items-center justify-center px-4 py-2 mt-2 text-sm font-medium text-red-700 border border-red-200 rounded-full hover:bg-red-50 transition"
           >
             ← Retour à l’accueil
           </Link>
@@ -67,8 +74,8 @@ export default function Bureau() {
               href={`/bureau/${member.slug}`}
               className="group"
             >
-              <article className="flex flex-col items-center text-center bg-violet-50/60 border border-violet-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition">
-                <div className="w-32 h-32 mb-4 overflow-hidden rounded-full border border-violet-200">
+              <article className="flex flex-col items-center text-center bg-red-50/60 border border-red-100 rounded-2xl p-5 shadow-sm hover:shadow-md hover:-translate-y-1 transition">
+                <div className="w-32 h-32 mb-4 overflow-hidden rounded-full border border-red-200">
                   <Image
                     src="/humain.jpeg"
                     alt={member.imgAlt}
@@ -77,14 +84,22 @@ export default function Bureau() {
                     className="object-cover w-full h-full"
                   />
                 </div>
-                <h2 className="text-xl font-semibold">{member.name}</h2>
-                <p className="text-sm text-violet-700 font-medium mb-2">
+
+                <h2
+                  className={`${moreSugar.className} text-xl text-red-700 mb-1`}
+                >
+                  {member.name}
+                </h2>
+
+                <p className="text-sm font-semibold text-yellow-600 font-medium mb-2">
                   {member.role}
                 </p>
+
                 <p className="text-sm leading-relaxed text-gray-800">
                   {member.desc}
                 </p>
-                <span className="mt-3 text-xs text-violet-600 font-medium group-hover:underline">
+
+                <span className="mt-3 text-xs text-red-700 font-medium group-hover:underline">
                   Voir la fiche détaillée →
                 </span>
               </article>

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import moreSugar from "../../fonts/more_sugar/moresugar";
 
 const members = [
   {
@@ -44,30 +45,26 @@ const members = [
   },
 ];
 
-// 🔥 NOTE : params est maintenant une Promise -> on l'attend
+// la route dynamique renvoie params sous forme de Promise → on la résout
 export default async function MemberPage({
   params,
 }: {
   params: Promise<{ slug: string }>;
 }) {
-  const { slug } = await params; // on "déplie" la Promise
+  const { slug } = await params;
   const member = members.find((m) => m.slug === slug);
 
   if (!member) {
     return (
-      <main className="min-h-screen flex flex-col items-center justify-center px-4 bg-black text-white">
-        <h1 className="text-2xl font-bold mb-4">Membre introuvable</h1>
-        <pre className="bg-zinc-900 text-xs p-4 rounded max-w-full overflow-x-auto text-left">
-{JSON.stringify(
-  {
-    slug_recu: slug,
-    slugs_connus: members.map((m) => m.slug),
-  },
-  null,
-  2
-)}
-        </pre>
-        <Link href="/bureau" className="mt-4 text-violet-300 hover:underline">
+      <main className="min-h-screen flex flex-col items-center justify-center bg-white text-red-700 p-6 text-center">
+        <h1 className={`${moreSugar.className} text-3xl mb-4`}>
+          Membre introuvable
+        </h1>
+
+        <Link
+          href="/bureau"
+          className="mt-4 text-red-700 font-medium underline"
+        >
           ← Retour au bureau
         </Link>
       </main>
@@ -75,39 +72,52 @@ export default async function MemberPage({
   }
 
   return (
-    <main className="min-h-screen bg-white text-violet-950 px-4 py-10">
+    <main className="min-h-screen bg-white text-gray-800 px-4 py-10">
       <div className="max-w-3xl mx-auto space-y-8">
+
+        {/* Retour */}
         <Link
           href="/bureau"
-          className="inline-block text-sm text-violet-700 hover:underline mb-2"
+          className="inline-block text-sm text-red-700 hover:underline mb-2"
         >
           ← Retour au bureau
         </Link>
 
+        {/* Header du membre */}
         <div className="flex flex-col items-center text-center gap-4">
           <Image
             src={member.img}
             alt={member.name}
             width={200}
             height={200}
-            className="rounded-full border border-violet-200 shadow-md object-cover"
+            className="rounded-full border border-red-200 shadow-md object-cover"
           />
-          <h1 className="text-3xl font-bold">{member.name}</h1>
-          <p className="text-lg font-medium text-violet-700">
+
+          <h1
+            className={`${moreSugar.className} text-4xl text-red-700 tracking-tight`}
+          >
+            {member.name}
+          </h1>
+
+          <p className="text-lg font-medium text-yellow-600">
             {member.role}
           </p>
         </div>
 
-        <p className="text-base leading-relaxed text-gray-800 text-center">
+        {/* Description */}
+        <p
+          className={`${moreSugar.className} text-base leading-relaxed text-gray-800 text-center`}
+        >
           {member.desc}
         </p>
 
+        {/* Contact */}
         <div className="text-center pt-4">
           <p className="text-sm text-gray-600">
             Contact :{" "}
             <a
               href={`mailto:${member.email}`}
-              className="text-violet-700 font-medium hover:underline"
+              className="text-red-700 font-medium hover:underline"
             >
               {member.email}
             </a>

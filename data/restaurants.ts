@@ -7,4 +7,12 @@ export const restaurants = [
     short: "Restaurant asiatique sur le campus IP Paris",
   },
 
+  {
+    name: "Le 19",
+    slug: "Le-19",
+    lat: 48.713061, 
+    lng: 2.202215,
+    short: "Restaurant-Bar Bistrot sur le campus IP Paris",
+  },
+
 ];
