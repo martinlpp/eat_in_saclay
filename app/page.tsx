@@ -12,7 +12,7 @@ export default function Home() {
   return (
     <main className=" bg-white flex flex-col items-center justify-center min-h-screen text-gray-800 px-4">
       <Image
-        src="/logoo.png"
+        src="/logo.png"
         alt="Logo de EatinSaclay"
         width={500}
         height={500}
