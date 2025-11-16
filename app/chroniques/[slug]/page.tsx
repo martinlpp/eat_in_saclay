@@ -1,4 +1,7 @@
+// app/chronique/[slug]/page.tsx (ou chemin équivalent)
+
 import Link from "next/link";
+import Image from "next/image";
 import { restaurants } from "@/data/restaurants";
 import moreSugar from "../../fonts/more_sugar/moresugar";
 
@@ -62,10 +65,69 @@ export default async function ChroniquePage({
         </p>
 
         {/* Contenu de la chronique */}
-        <article className="prose prose-sm max-w-none text-gray-800 leading-relaxed">
-          <p>
-            blablabla
-          </p>
+        <article className="prose prose-sm max-w-none text-gray-800 leading-relaxed font-serif">
+          {resto.critique ? (
+            <>
+              {/* Intro */}
+              {resto.critique.intro.map((p, i) => (
+                <p key={`intro-${i}`}>{p}</p>
+              ))}
+
+              {/* Sections */}
+              {resto.critique.sections.map((section, index) => (
+                <section key={section.title + index} className="mt-6">
+                  <h2 className="text-2xl font-semibold text-red-700">
+                    {section.title}
+                  </h2>
+
+                  {section.paragraphs?.map((p, i) => (
+                    <p key={`sec-${index}-p-${i}`}>{p}</p>
+                  ))}
+
+                  {/* Image de section (carte / décor…) */}
+                  {section.image && (
+  <div className="my-4 flex justify-center">
+    <Image
+      src={`/${section.image}.jpg`}
+      alt={section.imageAlt ?? `${resto.name} - illustration`}
+      width={500}    // tu peux jouer avec ça
+      height={300}
+      className={
+        section.image === "19_2"
+          ? "rounded-xl object-cover shadow-md max-w-md w-full"
+          : "rounded-xl object-cover shadow-md w-full"
+      }
+    />
+  </div>
+)}
+
+
+                  {section.items && (
+                    <ul className="list-disc pl-5">
+                      {section.items.map((item, i) => (
+                        <li key={`sec-${index}-li-${i}`}>{item}</li>
+                      ))}
+                    </ul>
+                  )}
+                </section>
+              ))}
+
+              {/* Petite photo générale à la fin */}
+              {resto.generalImage && (
+                <div className="mt-8 flex justify-center">
+                  <Image
+                    src={`/${resto.generalImage}.jpg`}
+                    alt={`${resto.name} - vue générale`}
+                    width={500}
+                    height={300}
+                    className="rounded-xl object-cover shadow-md max-w-full"
+                  />
+                </div>
+              )}
+            </>
+          ) : (
+            <p>Chronique à venir pour ce restaurant… 🍽️</p>
+          )}
         </article>
       </div>
     </main>
