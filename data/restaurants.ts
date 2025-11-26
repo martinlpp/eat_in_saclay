@@ -32,10 +32,18 @@ export const restaurants: Restaurant[] = [
     short: "Restaurant asiatique sur le campus IP Paris",
     // Tu pourras ajouter une critique + images plus tard
   },
+  {
+    name: "O'9 Poke",
+    slug: "O9-poke",
+    lat: 48.710948,
+    lng: 2.164144,
+    short: "Restaurant de Poke Bowl sur le campus du Moulon",
+    // Tu pourras ajouter une critique + images plus tard
+  },
 
   {
-    name: "Le 19",
-    slug: "Le-19",
+    name: "le 19",
+    slug: "le-19",
     lat: 48.713061,
     lng: 2.202215,
     short: "Restaurant-Bar Bistrot sur le campus IP Paris",
